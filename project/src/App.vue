@@ -1,32 +1,35 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div class="wraper">
+    <div class="tab_content">
+      <!-- 显示的内容 -->
+      <router-view></router-view>
     </div>
-    <router-view/>
+    <!-- 底部组件 -->
+    <tab class="tab_title"></tab>
   </div>
 </template>
 
+<script>
+import tab from "./components/tab";
+export default {
+  components: {
+    tab
+  }
+};
+</script>
+
 <style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+@import url("./style/index.less");
+.wraper {
+  .tab_content {
+    width: 100%;
+    height: 100%;
+  }
+  .tab_title {
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    background: white;
   }
 }
 </style>
