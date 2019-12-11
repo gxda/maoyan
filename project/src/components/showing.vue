@@ -8,16 +8,19 @@
             {{item.nm}}
             <span>{{item.version}}</span>
           </h3>
-          <p class="pingjia">
+          <p class="pingjia" v-if="item.globalReleased">
             观众评:
             <span>{{item.sc}}</span>
+          </p>
+          <p class="wish" v-else>
+            <span>{{item.wish}}</span>人想看
           </p>
           <p class="star">主演:{{item.star}}</p>
           <p class="showinfo">{{item.showInfo}}</p>
         </div>
         <div class="btn">
-          <p v-if="item.preShow" class="blue">预售</p>
-          <p v-else class="red">购买</p>
+          <p v-if="item.globalReleased" class="red">购买</p>
+          <p v-else class="blue">预售</p>
         </div>
       </div>
     </div>
@@ -26,7 +29,8 @@
 
 <script>
 import BS from "better-scroll";
-import { getshowing } from "../api/index";
+import { getshowing, getmoredata } from "../api/index";
+import { getmoveieimg, getmore } from "../utils/moveie";
 
 export default {
   data() {
@@ -36,27 +40,18 @@ export default {
   },
   created() {
     getshowing().then(data => {
-      let list = this.getmoveieimg(data.movieList);
+      // console.log(data.movieIds);
+      let list = getmoveieimg(data.movieList);
       this.list = list;
+      // let moredata = getmore(data.movieIds);
+      // getmoredata(moredata).then(data => {
+      //   console.log(data);
+      // });
     });
   },
   methods: {
     initbs() {
       new BS(".showing");
-    },
-    getmoveieimg(data) {
-      console.log(data);
-      for (let index = 0; index < data.length; index++) {
-        let { img } = data[index];
-        let img2 = img.split("/")[2];
-        let img4 = img.split("/")[4];
-        let img5 = img.split("/")[5];
-        let image = `https://${img2}/${img4}/${img5}`;
-        // console.log(image);
-        data[index].img = image;
-        // console.log(data[index].img);
-      }
-      return data;
     }
   },
   mounted() {
@@ -65,7 +60,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped >
 @import url("../style/index.less");
 .showing {
   .w(375);
@@ -94,7 +89,8 @@ export default {
         }
         .pingjia,
         .star,
-        .showinfo {
+        .showinfo,
+        .wish {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -102,7 +98,6 @@ export default {
           color: #666;
           span {
             font-size: @fs_l;
-
             color: red;
           }
         }

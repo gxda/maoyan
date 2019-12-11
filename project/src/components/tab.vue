@@ -12,7 +12,7 @@
 export default {};
 </script>
 
-<style lang="less">
+<style lang="less" scoped  >
 @import url("../style/index.less");
 ul {
   display: flex;
