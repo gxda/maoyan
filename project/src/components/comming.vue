@@ -2,7 +2,12 @@
   <div class="comming">
     <div class="comming-box">
       <div class="comming-content">
-        <li v-for="(item,index )in 100" :key="index">{{item}}</li>
+        <div class="expected-box">
+          <div class="expected">
+            <li v-for="item  in 100">{{item}}</li>
+          </div>
+        </div>
+        <li v-for="item  in 100">{{item}}</li>
       </div>
     </div>
   </div>
@@ -10,11 +15,20 @@
 
 <script>
 import BS from "better-scroll";
+import { getcomming } from "../api/index";
 export default {
   methods: {
     initbs() {
       new BS(".comming-box");
+      new BS(".expected-box", {
+        scrollX: true
+      });
     }
+  },
+  created() {
+    getcomming().then(data => {
+      console.log(data);
+    });
   },
   mounted() {
     this.initbs();
@@ -27,9 +41,19 @@ export default {
 
 .comming-box {
   width: 100%;
-  height: 100%;
+  .h(520);
+  overflow: hidden;
   .comming-content {
-    overflow: hidden;
+    .expected-box {
+      width: 100%;
+      .h(216);
+      background: red;
+      overflow: hidden;
+      .expected {
+        .h(216);
+        display: flex;
+      }
+    }
   }
 }
 </style>

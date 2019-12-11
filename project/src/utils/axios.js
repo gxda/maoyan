@@ -13,7 +13,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     // console.log("aha");
     // console.log(response.data.movieList)
-    return response.data.movieList;
+    return response.data;
 }, function (error) {
     // Do something with response error
     return Promise.reject(error);

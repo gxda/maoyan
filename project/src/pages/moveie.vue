@@ -4,20 +4,13 @@
       <div class="moveie_top">猫眼电影</div>
       <topbar></topbar>
     </div>
-
-    <!-- 容器 -->
-    <div class="moveie_topbar_box">
-      <!-- 内容 -->
-      <div class="moveie_topbar_topbar">
-        <router-view></router-view>
-      </div>
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import topbar from "../components/topbar";
-import BS from "better-scroll";
+
 export default {
   components: {
     topbar

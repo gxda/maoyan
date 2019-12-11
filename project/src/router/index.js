@@ -8,6 +8,8 @@ import cinema from "../pages/cinema"
 import myinfo from "../pages/myinfo"
 import showing from "../components/showing"
 import comming from "../components/comming"
+import search from "../components/search"
+
 
 const router = new Router({
   routes: [{
@@ -19,6 +21,9 @@ const router = new Router({
       }, {
         path: "comming",
         component: comming,
+      }, {
+        path: "search",
+        component: search
       }]
     }, {
       path: '/cinema',
@@ -27,6 +32,9 @@ const router = new Router({
     {
       path: '/myinfo',
       component: myinfo,
+    }, {
+      path: "/",
+      redirect: "/moveie/showing"
     }
   ]
 })

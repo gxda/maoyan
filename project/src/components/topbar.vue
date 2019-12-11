@@ -8,7 +8,9 @@
       <router-link to="/moveie/comming" tag="p" active-class="sel">
         <span>即将上映</span>
       </router-link>
-      <p>🔍</p>
+      <router-link to="/moveie/search" tag="p" active-class="sel">
+        <span>🔍</span>
+      </router-link>
     </div>
   </div>
 </template>
