@@ -7,7 +7,12 @@
         <div class="expected-box">
           <!-- 视图层 -->
           <div class="expected">
-            <div class="expected_list" v-for="(item,index) in list" :key="index">
+            <div
+              class="expected_list"
+              v-for="(item,index) in list"
+              :key="index"
+              @click="jump('/moveie/introduce',item.nm,item.img,item.id)"
+            >
               <div class="list_img">
                 <img :src="item.img" />
                 <p class="wish">{{item.wish}}人想看</p>
@@ -19,28 +24,32 @@
           </div>
         </div>
 
+        <hr />
         <!-- 下面 -->
         <div class="comming">
-          <div class="main" v-for="(item,index) in data" :key="index">
-            <img :src="item.img" alt />
-            <div class="main_content">
-              <h3>
-                {{item.nm}}
-                <span>{{item.version}}</span>
-              </h3>
-              <p class="pingjia" v-if="item.globalReleased">
-                观众评:
-                <span>{{item.sc}}</span>
-              </p>
-              <p class="wish" v-else>
-                <span>{{item.wish}}</span>人想看
-              </p>
-              <p class="star">主演:{{item.star}}</p>
-              <p class="showinfo">{{item.showInfo}}</p>
-            </div>
-            <div class="btn">
-              <p v-if="item.globalReleased" class="red">购买</p>
-              <p v-else class="blue">预售</p>
+          <div v-for="(sitem,index) in data" :key="index">
+            <p class="comingTitle">{{sitem.comingTitle}}</p>
+            <div class="main" @click="jump('/moveie/introduce',sitem.nm,sitem.img,sitem.id)">
+              <img :src="sitem.img" alt />
+              <div class="main_content">
+                <h3>
+                  {{sitem.nm}}
+                  <span>{{sitem.version}}</span>
+                </h3>
+                <p class="pingjia" v-if="sitem.globalReleased">
+                  观众评:
+                  <span>{{sitem.sc}}</span>
+                </p>
+                <p class="wish" v-else>
+                  <span>{{sitem.wish}}</span>人想看
+                </p>
+                <p class="star">主演:{{sitem.star}}</p>
+                <p class="showinfo">{{sitem.showInfo}}</p>
+              </div>
+              <div class="btn">
+                <p v-if="sitem.globalReleased" class="red">购买</p>
+                <p v-else class="blue">预售</p>
+              </div>
             </div>
           </div>
         </div>
@@ -62,11 +71,19 @@ export default {
   },
   methods: {
     initbs() {
-      new BS(".comming-box");
+      new BS(".comming-box", { click: true });
       new BS(".expected-box", {
         scrollX: true,
-        preventDefault: true,
+        scrollY: false,
+
+        preventDefault: false,
         click: true
+      });
+    },
+    jump(path, name, img, id) {
+      this.$router.push({
+        path: path,
+        query: { name: name, img: img, id: id }
       });
     }
   },
@@ -93,7 +110,7 @@ export default {
 
 .comming-box {
   .w(375);
-  .h(500);
+  .h(720);
   overflow: hidden;
   .comming-content {
     .title {
@@ -105,18 +122,17 @@ export default {
     }
     .expected-box {
       .w(375);
-      .h(216);
+      .h(200);
       overflow: hidden;
       .expected {
         position: absolute;
         display: flex;
 
         z-index: 1;
-        .h(216);
-        border-bottom: 5px solid #ddd;
+        .h(200);
         .expected_list {
           margin: 10px;
-          .h(216);
+          .h(200);
           .list_img {
             .w(85);
             .h(115);
@@ -136,7 +152,7 @@ export default {
           }
 
           .name {
-            font-size: @fs_m;
+            font-size: @fs_s;
             text-align: center;
             color: #222222;
             margin: 2px;
@@ -150,6 +166,10 @@ export default {
       }
     }
     .comming {
+      .comingTitle {
+        font-size: @fs_m;
+        color: #333;
+      }
       .main {
         margin: 10px;
         .w(346);

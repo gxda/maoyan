@@ -1,6 +1,9 @@
 <template id="cinema">
-  <div class="cinema">
-    <p>影院</p>
+  <div>
+    <div class="cinema">
+      <p>影院</p>
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 

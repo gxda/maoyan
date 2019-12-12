@@ -1,16 +1,21 @@
 <template  id="showing">
   <div class="showing">
     <div class="showing-content">
-      <div class="main" v-for="(item,index) in list" :key="index">
+      <div
+        class="main"
+        v-for="(item,index) in list"
+        :key="index"
+        @click="jump('/cinema/detail',item.nm,item.img,item.id)"
+      >
         <img :src="item.img" alt />
         <div class="main_content">
           <h3>
             {{item.nm}}
-            <span>{{item.version}}</span>
+            <span v-if="item.version">{{item.version}}</span>
           </h3>
           <p class="pingjia" v-if="item.globalReleased">
-            观众评:
-            <span>{{item.sc}}</span>
+            {{item.sc===0?'暂无评分':'观众评:'}}
+            <span v-if="item.sc!=0">{{item.sc}}</span>
           </p>
           <p class="wish" v-else>
             <span>{{item.wish}}</span>人想看
@@ -51,7 +56,14 @@ export default {
   },
   methods: {
     initbs() {
-      new BS(".showing");
+      new BS(".showing", { click: true });
+    },
+    // 跳转到详情页面
+    jump(path, name, img, id) {
+      this.$router.push({
+        path: path,
+        query: { name: name, img: img, id: id }
+      });
     }
   },
   mounted() {
@@ -64,7 +76,7 @@ export default {
 @import url("../style/index.less");
 .showing {
   .w(375);
-  .h(520);
+  .h(720);
   overflow: hidden;
   .showing-content {
     .main {
@@ -86,6 +98,10 @@ export default {
           white-space: nowrap;
           text-overflow: ellipsis;
           font-size: @fs_l;
+          span {
+            background: #3c9fe6;
+            margin-left: 5px;
+          }
         }
         .pingjia,
         .star,

@@ -42,6 +42,24 @@ export const getcomme = () => {
 }
 
 
+
+
+
+// 获取即将上映的数据
+export const getmovedetail = (id) => {
+    return new Promise((resolve, reject) => {
+        let url =
+            `/hehe/ajax/detailmovie?movieId=${id}&optimus_uuid=81AFE4901C2411EABD7EA7A2E4FF6A1372C6F9EDD838417FA61E43028431D103&optimus_risk_level=71&optimus_code=10`;
+        axios.get(url).then(data => {
+            resolve(data);
+        }).catch((err) => {
+            reject(err)
+        });
+    })
+
+}
+
+
 // 根据id获取数据
 export const getmoredata = (movieId) => {
     return new Promise((resolve, reject) => {
