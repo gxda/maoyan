@@ -7,7 +7,7 @@
       <p>&nbsp;</p>
     </div>
     <!-- 电影详情部分 -->
-    <div class="detail-move">
+    <div class="detail-move" @click="jump('/moveie/introduce',list.nm,img.img,list.id)">
       <div class="bj">
         <img :src="img.img" alt />
       </div>
@@ -15,7 +15,7 @@
       <div class="detail-move-box">
         <img :src="img.img" alt />
         <!-- 电影信息 -->
-        <div class="detail-move-content" @click="jump('/moveie/introduce',list.nm,img.img,list.id)">
+        <div class="detail-move-content">
           <p class="name">{{list.nm}}</p>
           <p class="enm">{{list.enm}}</p>
           <p v-if="sc.sc==0" class="sale">暂无评分</p>
