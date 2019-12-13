@@ -1,3 +1,4 @@
+// 对图片进行操作
 export const getmoveieimg = (data) => {
     // console.log(data);
     for (let index = 0; index < data.length; index++) {
@@ -15,6 +16,7 @@ export const getmoveieimg = (data) => {
     return data;
 }
 
+// 用来获取更多的数据
 export const getmore = (moveId) => {
     // console.log(moveId);
     let more = [];

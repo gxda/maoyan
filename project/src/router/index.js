@@ -22,7 +22,6 @@ const router = new Router({
       children: [{
           path: "showing",
           component: showing,
-
         }, {
           path: "comming",
           component: comming,

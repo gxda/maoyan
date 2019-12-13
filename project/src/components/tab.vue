@@ -1,7 +1,7 @@
 <template  id="tab">
   <div class="tab">
     <ul>
-      <router-link to="/moveie" tag="li">电影</router-link>
+      <router-link to="/moveie/showing" tag="li">电影</router-link>
       <router-link to="/cinema" tag="li">影院</router-link>
       <router-link to="/myinfo" tag="li">我的</router-link>
     </ul>

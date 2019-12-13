@@ -18,9 +18,9 @@
         <div class="detail-move-content" @click="jump('/moveie/introduce',list.nm,img.img,list.id)">
           <p class="name">{{list.nm}}</p>
           <p class="enm">{{list.enm}}</p>
-          <p v-if="list.onSale" class="sale">暂无评分</p>
+          <p v-if="sc.sc==0" class="sale">暂无评分</p>
           <p v-else class="sc">
-            <span>{{list.sc}}</span>
+            <span>{{sc.sc}}</span>
             <span>({{list.snum}}人评)</span>
           </p>
           <p class="cat">
@@ -43,7 +43,8 @@ export default {
     return {
       data: this.$route.query,
       img: this.$route.query,
-      list: []
+      list: [],
+      sc: this.$route.query
     };
   },
   methods: {
@@ -67,7 +68,7 @@ export default {
 };
 </script>
 
-<style lang="less" >
+<style lang="less"  scoped>
 @import url("../style/index.less");
 .detail-box {
   width: 100%;

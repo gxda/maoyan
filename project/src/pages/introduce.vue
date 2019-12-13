@@ -29,8 +29,12 @@
     </div>
     <!-- 简介 -->
     <div class="jieshao">
-      <p class="title">简介</p>
-      <div class="jieshao_content">{{list.dra}}</div>
+      <p class="title">
+        简介
+        <span @click="zhankai" v-if="read">展开&or;</span>
+        <span @click="zhankai" v-else>隐藏 ^</span>
+      </p>
+      <div :class="read?'jieshao_content_show':'jieshao_content_hidden'">{{list.dra}}</div>
     </div>
   </div>
 </template>
@@ -42,7 +46,8 @@ export default {
   data() {
     return {
       img: this.$route.query.img,
-      list: []
+      list: [],
+      read: true
     };
   },
 
@@ -53,6 +58,11 @@ export default {
       let box = this.$refs.box;
       box.style.background = this.list.backgroundColor;
     });
+  },
+  methods: {
+    zhankai() {
+      this.read = !this.read;
+    }
   }
   //   mounted() {}
 };
@@ -150,11 +160,24 @@ export default {
       color: #fff;
       margin-top: 10px;
       margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      opacity: 0.6;
     }
-    .jieshao_content {
+    .jieshao_content_show {
       .w(343);
-      .h(76);
-      font-size: @fs_m;
+      .h(90);
+      font-size: @fs_l;
+      color: #fff;
+      .l_h(30);
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+    .jieshao_content_hidden {
+      .w(343);
+      font-size: @fs_l;
       color: #fff;
       .l_h(30);
     }

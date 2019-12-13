@@ -198,7 +198,7 @@ export default {
             white-space: nowrap;
             text-overflow: ellipsis;
             font-size: @fs_m;
-            color: #666;
+            color: #777;
             span {
               font-size: @fs_l;
               color: red;

@@ -5,7 +5,7 @@
         class="main"
         v-for="(item,index) in list"
         :key="index"
-        @click="jump('/cinema/detail',item.nm,item.img,item.id)"
+        @click="jump('/cinema/detail',item.nm,item.img,item.id,item.sc)"
       >
         <img :src="item.img" alt />
         <div class="main_content">
@@ -45,10 +45,11 @@ export default {
   },
   created() {
     getshowing().then(data => {
-      // console.log(data.movieIds);
+      console.log(data);
       let list = getmoveieimg(data.movieList);
       this.list = list;
-      // let moredata = getmore(data.movieIds);
+      //获取到所有的id
+      let moredata = getmore(data.movieIds);
       // getmoredata(moredata).then(data => {
       //   console.log(data);
       // });
@@ -59,10 +60,10 @@ export default {
       new BS(".showing", { click: true });
     },
     // 跳转到详情页面
-    jump(path, name, img, id) {
+    jump(path, name, img, id, sc) {
       this.$router.push({
         path: path,
-        query: { name: name, img: img, id: id }
+        query: { name: name, img: img, id: id, sc: sc }
       });
     }
   },
@@ -111,7 +112,7 @@ export default {
           white-space: nowrap;
           text-overflow: ellipsis;
           font-size: @fs_m;
-          color: #666;
+          color: #777;
           span {
             font-size: @fs_l;
             color: red;
