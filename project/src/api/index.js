@@ -60,6 +60,22 @@ export const getmovedetail = (id) => {
 }
 
 
+// 获取电影院数据
+export const getcinemadata = () => {
+
+    return new Promise((resolve, reject) => {
+        let url = "/hehe/ajax/cinemaList?day=2019-12-13&offset=0&limit=20&districtId=-1&lineId=-1&hallType=-1&brandId=-1&serviceId=-1&areaId=-1&stationId=-1&item=&updateShowDay=true&reqId=1576222269226&cityId=1&optimus_uuid=077C01401CBF11EAA338338C88948AD4277FCDE616924099BA3521377681244F&optimus_risk_level=71&optimus_code=10";
+        axios.get(url).then(data => {
+            resolve(data)
+        }).catch((err) => {
+            reject(err)
+        })
+
+    })
+}
+
+
+
 // 根据id获取数据
 export const getmoredata = (movieId) => {
     return new Promise((resolve, reject) => {
