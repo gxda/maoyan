@@ -11,6 +11,8 @@ import showing from "../components/showing"
 import comming from "../components/comming"
 import search from "../components/search"
 import introduce from "../pages/introduce"
+import city from "../components/city"
+
 
 
 
@@ -32,6 +34,10 @@ const router = new Router({
         {
           path: "introduce",
           component: introduce,
+        },
+        {
+          path: "city",
+          component: city,
         }
 
 

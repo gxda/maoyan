@@ -13,6 +13,20 @@ export const getshowing = () => {
     })
 }
 
+// 获取城市的数据
+export const getcity = () => {
+    return new Promise((resolve, reject) => {
+        let url =
+            "/hehe/dianying/cities.json";
+        axios.get(url).then(data => {
+            resolve(data);
+        }).catch((err) => {
+            reject(err)
+        });
+    })
+
+}
+
 // 获取即将上映的数据
 export const getcomming = () => {
     return new Promise((resolve, reject) => {

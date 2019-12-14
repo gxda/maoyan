@@ -1,7 +1,7 @@
 <template  id="topbar">
   <div>
     <div class="topbar">
-      <p>北京</p>
+      <p @click="gocity('/moveie/city')">北京</p>
       <router-link to="/moveie/showing" tag="p" active-class="sel">
         <span>正在热映</span>
       </router-link>
@@ -16,7 +16,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    gocity(path) {
+      this.$router.push({ path: path });
+    }
+  }
+};
 </script>
 
 <style lang="less"  scoped>

@@ -55,6 +55,7 @@ export default {
     initbs() {
       let myscroll = new BS(".showing", {
         click: true,
+        pprobeType: 3,
         pullUpLoad: true,
         pullDownRefresh: true
       });
