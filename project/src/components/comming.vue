@@ -60,8 +60,8 @@
 
 <script>
 import BS from "better-scroll";
-import { getcomming, getcomme } from "../api/index";
-import { getmoveieimg } from "../utils/moveie";
+import { getcomming, getcomme, getshowing, getmoredata } from "../api/index";
+import { getmoveieimg, getmore } from "../utils/moveie";
 export default {
   data() {
     return {
@@ -71,11 +71,24 @@ export default {
   },
   methods: {
     initbs() {
-      new BS(".comming-box", { click: true });
+      let myscroll = new BS(".comming-box", {
+        click: true,
+        pullUpLoad: true
+      });
+      myscroll.on("pullingUp", () => {
+        getshowing().then(data => {
+          let moredata = getmore(data.movieIds);
+          getmoredata(moredata).then(data => {
+            let result = getmoveieimg(data.coming);
+            console.log(result);
+            this.data = result;
+          });
+        });
+        myscroll.finishPullUp();
+      });
+
       new BS(".expected-box", {
         scrollX: true,
-        scrollY: false,
-
         preventDefault: false,
         click: true
       });
