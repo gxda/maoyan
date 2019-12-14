@@ -45,7 +45,7 @@ export default {
   },
   created() {
     getshowing().then(data => {
-      // console.log(data);
+      console.log(data);
       let list = getmoveieimg(data.movieList);
       this.list = list;
       console.log(this.list);
