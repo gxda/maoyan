@@ -45,20 +45,32 @@ export default {
   },
   created() {
     getshowing().then(data => {
-      console.log(data);
+      // console.log(data);
       let list = getmoveieimg(data.movieList);
       this.list = list;
-      //获取到所有的id
-      let moredata = getmore(data.movieIds);
-      // getmoredata(moredata).then(data => {
-      //   console.log(data);
-      // });
+      console.log(this.list);
     });
   },
   methods: {
     initbs() {
-      new BS(".showing", { click: true });
+      let myscroll = new BS(".showing", {
+        click: true,
+        pullUpLoad: true,
+        pullDownRefresh: true
+      });
+      myscroll.on("pullingUp", () => {
+        getshowing().then(data => {
+          let moredata = getmore(data.movieIds);
+          getmoredata(moredata).then(data => {
+            let result = getmoveieimg(data.coming);
+            console.log(result);
+            this.list = result;
+          });
+        });
+        myscroll.finishPullUp();
+      });
     },
+
     // 跳转到详情页面
     jump(path, name, img, id, sc) {
       this.$router.push({
