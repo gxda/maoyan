@@ -16,6 +16,10 @@
         </ul>
       </div>
     </div>
+    <!-- 右侧城市分类 -->
+    <div class="right" ref="=text">
+      <p v-for="(item,index) in city" :key="index" @click="jump(index)">{{item.title}}</p>
+    </div>
   </div>
 </template>
 
@@ -37,8 +41,14 @@ export default {
   },
   methods: {
     initBS() {
-      new Bs(".city_box");
+      this.bs = new Bs(".city_box");
+    },
+    jump(index) {
+      this.bs.scrollToElement(this.$refs.test[index]);
     }
+  },
+  mounted() {
+    this.initBS();
   }
 };
 </script>
@@ -55,19 +65,32 @@ export default {
 
   .city_box {
     .w(375);
-    height: 100%;
-    overflow: scroll;
+    .h(700);
+    overflow: hidden;
+    background-color: #ebebeb;
     .wraper {
       ul {
         li {
-          background-color: #ddd;
-          font-size: @fs_xxxl;
+          .title {
+            padding-left: 25px;
+            background-color: #ebebeb;
+            font-size: @fs_m;
+            .h(30);
+            .w(350);
+            background: #ddd;
+            .l_h(30);
+            color: #333;
+          }
+
           p {
+            margin-left: 15px;
+
             .h(45);
             .l_h(45);
             font-size: @fs_l;
             border-bottom: 1px solid #c8c7cc;
-            background-color: #ebebeb;
+
+            -webkit-tap-highlight-color: transparent;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -75,6 +98,20 @@ export default {
           }
         }
       }
+    }
+  }
+  .right {
+    position: fixed;
+    top: 30px;
+    right: 10px;
+    z-index: 10;
+
+    p {
+      .w(30);
+      .h(25);
+      .l_h(25);
+      text-align: center;
+      font-size: @fs_s;
     }
   }
 }

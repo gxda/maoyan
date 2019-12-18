@@ -50,7 +50,7 @@ export const handlecitydata = (data) => {
     console.log(hot);
     let other = [];
     for (const key in date) {
-        if (key !== "hot" && key !== "9") {
+        if (key !== "hot") {
             other.push(date[key]);
         }
     }
