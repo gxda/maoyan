@@ -1,4 +1,4 @@
-module.exports = {
+﻿module.exports = {
     publicPath: './', // npm run build 之后的资源路径默认 ‘/’
     devServer: {
         proxy: {

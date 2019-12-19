@@ -17,7 +17,8 @@
       </div>
     </div>
     <!-- 右侧城市分类 -->
-    <div class="right" ref="=text">
+
+    <div class="right" ref="=text" @touchmove.stop="touchmove">
       <p v-for="(item,index) in city" :key="index" @click="jump(index)">{{item.title}}</p>
     </div>
   </div>
@@ -41,9 +42,19 @@ export default {
   },
   methods: {
     initBS() {
-      this.bs = new Bs(".city_box");
+      this.bs = new Bs(".city_box", {
+        probeType: 3
+      });
+      this.bs.on("scroll", proy => {
+        console.log("滚动", proy.y);
+      });
     },
     jump(index) {
+      this.bs.scrollToElement(this.$refs.test[index]);
+    },
+    touchmove(e) {
+      let y = e.touches[0].pageY - 35;
+      let index = Math.floor(y / 20);
       this.bs.scrollToElement(this.$refs.test[index]);
     }
   },
