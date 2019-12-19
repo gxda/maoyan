@@ -8,7 +8,7 @@
             <div class="title">{{item.title}}</div>
             <ol>
               <!-- 循环城市列表 -->
-              <li v-for="(sitem, index) in item.list" :key="index">
+              <li v-for="(sitem, index) in item.list" :key="index" @click="go(sitem.nm)">
                 <p>{{sitem.nm}}</p>
               </li>
             </ol>
@@ -43,7 +43,8 @@ export default {
   methods: {
     initBS() {
       this.bs = new Bs(".city_box", {
-        probeType: 3
+        probeType: 3,
+        click: true
       });
       this.bs.on("scroll", proy => {
         console.log("滚动", proy.y);
@@ -56,8 +57,13 @@ export default {
       let y = e.touches[0].pageY - 35;
       let index = Math.floor(y / 20);
       this.bs.scrollToElement(this.$refs.test[index]);
+    },
+    go(name) {
+      console.log(name);
+      this.$router.push({ path: "/moveie/showing", query: { name } });
     }
   },
+
   mounted() {
     this.initBS();
   }
@@ -76,7 +82,7 @@ export default {
 
   .city_box {
     .w(375);
-    .h(700);
+    height: 100%;
     overflow: hidden;
     background-color: #ebebeb;
     .wraper {
