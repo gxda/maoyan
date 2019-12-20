@@ -3,15 +3,33 @@ import Router from 'vue-router'
 
 
 Vue.use(Router)
-import moveie from "../pages/moveie"
-import cinema from "../pages/cinema"
-import myinfo from "../pages/myinfo"
-import detail from "../pages/detail"
-import showing from "../components/showing"
-import comming from "../components/comming"
-import search from "../components/search"
-import introduce from "../pages/introduce"
-import city from "../components/city"
+const moveie = () => {
+  return import("../pages/moveie")
+}
+const cinema = () => {
+  return import("../pages/cinema")
+}
+const myinfo = () => {
+  return import("../pages/myinfo")
+}
+const detail = () => {
+  return import("../pages/detail")
+}
+const showing = () => {
+  return import("../components/showing")
+}
+const comming = () => {
+  return import("../components/comming")
+}
+const search = () => {
+  return import("../components/search")
+}
+const introduce = () => {
+  return import("../pages/introduce")
+}
+const city = () => {
+  return import("../components/city")
+}
 
 
 

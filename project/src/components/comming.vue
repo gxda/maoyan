@@ -14,7 +14,7 @@
               @click="jump('/moveie/introduce',item.nm,item.img,item.id)"
             >
               <div class="list_img">
-                <img :src="item.img" />
+                <img v-lazy="item.img" alt />
                 <p class="wish">{{item.wish}}人想看</p>
               </div>
 
@@ -30,7 +30,7 @@
           <div v-for="(sitem,index) in data" :key="index">
             <p class="comingTitle">{{sitem.comingTitle}}</p>
             <div class="main" @click="jump('/moveie/introduce',sitem.nm,sitem.img,sitem.id)">
-              <img :src="sitem.img" alt />
+              <img v-lazy="sitem.img" alt />
               <div class="main_content">
                 <h3>
                   {{sitem.nm}}

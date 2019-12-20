@@ -7,7 +7,9 @@
         :key="index"
         @click="jump('/cinema/detail',item.nm,item.img,item.id,item.sc)"
       >
-        <img :src="item.img" alt />
+        <!-- <img :src="item.img" alt /> -->
+        <img v-lazy="item.img" alt />
+
         <div class="main_content">
           <h3>
             {{item.nm}}
